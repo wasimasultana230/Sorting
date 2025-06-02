@@ -25,7 +25,10 @@ int main()
         }
         if (min != i)
         {
-            swap(arr[i], arr[min]);
+            //swap(arr[i], arr[min]);
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
         }
     }
     cout << "Sort the array in descending order : \n";
