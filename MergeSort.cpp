@@ -1,14 +1,14 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-void conquer(int arr[], int si, int mid, int ei)
+void conquer(int arr[], int st, int mid, int ed)
 {
-    int size = (ei - si + 1);
+    int size = (ed - st + 1);
     int newArray[size];
-    int idx1 = si;
+    int idx1 = st;
     int idx2 = mid + 1;
     int x = 0;
-    while (idx1 <= mid && idx2 <= ei)
+    while (idx1 <= mid && idx2 <= ed)
     {
         if (arr[idx1] <= arr[idx2])
         {
@@ -23,26 +23,26 @@ void conquer(int arr[], int si, int mid, int ei)
     {
         newArray[x++] = arr[idx1++];
     }
-    while (idx2 <= ei)
+    while (idx2 <= ed)
     {
         newArray[x++] = arr[idx2++];
     }
 
-    for (int i = 0, j = si; i < size; i++, j++)
+    for (int i = 0, j = st; i < size; i++, j++)
     {
         arr[j] = newArray[i];
     }
 }
-void divide(int arr[], int si, int ei)
+void divide(int arr[], int st, int ed)
 {
-    if (si >= ei)
+    if (st >= ed)
     {
         return;
     }
-    int mid = si + (ei - si) / 2;
-    divide(arr, si, mid);
-    divide(arr, mid + 1, ei);
-    conquer(arr, si, mid, ei);
+    int mid = st + (ed - st) / 2;
+    divide(arr, st, mid);
+    divide(arr, mid + 1, ed);
+    conquer(arr, st, mid, ed);
 }
 int main()
 {
